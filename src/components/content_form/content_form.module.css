@@ -1,0 +1,39 @@
+@value mainGrey from "../../common/colors.css";
+@value mainDeepGrey from "../../common/colors.css";
+@value mainColor from "../../common/colors.css";
+@value mainWhite from "../../common/colors.css";
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  padding-right: 2%;
+  height: 70vh;
+  /* flex: 1 1 70%; */
+}
+
+.data {
+  outline: 0;
+  border: 1px solid mainGrey;
+  padding: 10px;
+}
+
+.data:after {
+  color: mainGrey;
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.contents {
+  resize: none;
+  height: 100%;
+  font-size: 15px;
+}
+
+.hashTag__container {
+  padding: 10px 0;
+  border: 0;
+  display: flex;
+  align-items: center;
+}

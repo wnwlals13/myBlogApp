@@ -1,0 +1,73 @@
+@value mainColor from '../../common/colors.css';
+@value mainGrey from '../../common/colors.css';
+@value mainWhite from '../../common/colors.css';
+
+.header {
+  position: fixed;
+  height: 60px;
+  width: 100vw;
+  top: 0;
+  border-bottom: 1px solid mainGrey;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 50px;
+  background: mainWhite;
+}
+
+.logo {
+  cursor: pointer;
+  min-width: 160px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+}
+
+.searchInput {
+  outline: 0;
+  border: 0;
+}
+
+.searchIcon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.user {
+  border-radius: 10px;
+  height: 100%;
+  width: 60px;
+  font-size: 15px;
+  border: 1px solid mainColor;
+  color: mainColor;
+  text-align: center;
+  padding: 5px 0;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: all 100ms ease-in;
+}
+
+.user:hover {
+  background: mainColor;
+  color: mainWhite;
+}
+
+.userName:hover {
+  background: mainColor;
+  color: mainWhite;
+}
+
+.container {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  transform: translate(-50%, 0);
+  visibility: hidden;
+}
+
+.container.show {
+  visibility: visible;
+}

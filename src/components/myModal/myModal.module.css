@@ -1,0 +1,18 @@
+@value mainWhite from '../../common/colors.css';
+@value mainDeepGrey from '../../common/colors.css';
+
+.myModalList {
+  list-style-type: none;
+  padding: 10px;
+  border-radius: 10px;
+  background: mainWhite;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.myModalList li {
+  padding-bottom: 5px;
+}
+.myModalList li:hover {
+  color: mainDeepGrey;
+}

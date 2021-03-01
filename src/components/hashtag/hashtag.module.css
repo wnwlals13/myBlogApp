@@ -1,0 +1,41 @@
+@value mainGrey from "../../common/colors.css";
+@value mainColor from "../../common/colors.css";
+
+.hashTag {
+  flex: 20%;
+  border: 0;
+  border-bottom: 1px solid mainGrey;
+}
+
+.hashTag:focus {
+  outline: 0;
+}
+
+.hashTag__made {
+  flex: 80%;
+  padding: 0;
+  margin: 0;
+}
+
+.hashTag__one {
+  pointer-events: none; /*click이벤트 안됨*/
+  display: inline;
+  background: mainColor;
+  color: #fff;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin: 5px;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.hashTag__one::before {
+  content: "x";
+  display: inline-block;
+  margin-right: 6px;
+  pointer-events: all;
+  text-align: center;
+  cursor: pointer;
+  height: 100%;
+  width: 10px;
+}

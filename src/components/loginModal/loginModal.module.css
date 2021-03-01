@@ -1,0 +1,87 @@
+@value mainGrey from '../../common/colors.css';
+@value mainWhite from '../../common/colors.css';
+@value mainColor from '../../common/colors.css';
+@value mainDeepGrey from '../../common/colors.css';
+@value mainLightGrey from '../../common/colors.css';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.loginContainer {
+  position: absolute;
+  overflow: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  animation-name: modalopen;
+  animation-duration: 0.5s;
+}
+
+.loginHeader {
+  flex: 1 1 50%;
+  padding: 15px;
+  border-right: 1px solid mainGrey;
+}
+
+.loginBody {
+  flex: 1 1 50%;
+  padding: 25px;
+}
+
+.loginSocial {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.socialImg {
+  width: 35px;
+  cursor: pointer;
+  border: 0.5px solid mainGrey;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.socialImg:hover {
+  background: mainLightGrey;
+}
+
+.button {
+  border: 0;
+  outline: 0;
+  background: none;
+}
+
+.loginImg {
+  width: 100%;
+}
+
+.signin {
+  margin: 0;
+  padding-bottom: 20px;
+  display: block;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  border-bottom: 1px solid white;
+}
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

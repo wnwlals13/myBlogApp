@@ -1,0 +1,27 @@
+@value mainLightGrey from '../../common/colors.css';
+
+.prevContainer {
+  /* flex: 1 1 30%; */
+}
+
+.prev__Title {
+  height: 50px;
+  font-size: 30px;
+  margin-bottom: 10px;
+  padding: 0 8px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid mainLightGrey;
+}
+
+.prev__Content {
+  font-size: 20px;
+  margin-bottom: 10px;
+  padding: 11px;
+  white-space: pre-line;
+}
+
+.imgTag {
+  width: 200px;
+  margin-left: 2%;
+  margin-top: 1%;
+}
