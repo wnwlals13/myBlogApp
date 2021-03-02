@@ -3,6 +3,8 @@ import styles from "./app.module.css";
 import ContentsList from "./components/contentList/contentsList";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import ContentAdd from "./components/content_add/content_add";
+import Article from "./components/article/article";
+import ContentEdit from "./components/content_edit/content_edit";
 
 function App({ authService, dbService, FileInput }) {
   return (
@@ -17,6 +19,16 @@ function App({ authService, dbService, FileInput }) {
           </Route>
           <Route path="/addPost">
             <ContentAdd
+              authService={authService}
+              dbService={dbService}
+              FileInput={FileInput}
+            />
+          </Route>
+          <Route path="/viewPost">
+            <Article authService={authService} dbService={dbService} />
+          </Route>
+          <Route path="/editPost">
+            <ContentEdit
               authService={authService}
               dbService={dbService}
               FileInput={FileInput}

@@ -11,24 +11,40 @@ const MyModal = memo(({ display, onLogout }) => {
     display = false;
     onLogout();
   };
-  const onHandleAddPost = () => {
-    history.push({
-      pathname: "/addPost",
-      state: {
-        id: historyId ? historyId.id : null,
-        name: historyId ? historyId.name : null,
-      },
-    });
+  const handleMenu = (event) => {
+    const dataId = event.target.dataset.id;
+    if (dataId == "newly") {
+      history.push({
+        pathname: "/addPost",
+        state: {
+          id: historyId ? historyId.id : null,
+          name: historyId ? historyId.name : null,
+          email: historyId ? historyId.email : null,
+        },
+      });
+    } else if (dataId == "mypost") {
+      history.push({
+        pathname: "/",
+        state: {
+          id: historyId ? historyId.id : null,
+          name: historyId ? historyId.name : null,
+          email: historyId ? historyId.email : null,
+        },
+      });
+    }
   };
+
   return (
     <ul
       className={`${styles.myModalList} ${display ? styles.show : undefined}`}
     >
-      <li className={styles.listItem} onClick={onHandleAddPost}>
+      <li className={styles.listItem} data-id="newly" onClick={handleMenu}>
         새 글 쓰기
       </li>
-      <li className={styles.listItem}>내가 쓴 글</li>
-      <li className={styles.listItem} onClick={onthirdClick}>
+      <li className={styles.listItem} data-id="mypost" onClick={handleMenu}>
+        내가 쓴 글
+      </li>
+      <li className={styles.listItem} data-id="logout" onClick={onthirdClick}>
         로그아웃
       </li>
     </ul>

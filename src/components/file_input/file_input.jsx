@@ -8,8 +8,7 @@ const FileInput = ({ imgService, name, onFileChange }) => {
     event.preventDefault();
     inputRef.current.click();
   };
-  const onChange = async (event) => {
-    event.preventDefault();
+  const onImgChange = async (event) => {
     setLoading(true);
     const uploaded = await imgService.uploadImg(event.target.files[0]);
     setLoading(false);
@@ -22,7 +21,7 @@ const FileInput = ({ imgService, name, onFileChange }) => {
         type="file"
         name="file"
         className={styles.input}
-        onChange={onChange}
+        onChange={onImgChange}
       />
       <div className={styles.buttonWrap}>
         {!loading && (

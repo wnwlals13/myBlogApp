@@ -1,0 +1,17 @@
+* {
+  box-sizing: border-box;
+}
+
+/* .contentsContainer {
+} */
+
+.subContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+/* @media screen and(min-width : 600) {
+  .subContainer {
+    flex: 1 1;
+  }
+} */

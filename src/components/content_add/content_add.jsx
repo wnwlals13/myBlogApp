@@ -14,30 +14,22 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
   const addContent = (content) => {
     setContents((contents) => {
       let update = { ...contents };
-      if (content.title !== undefined || content.mainContetns !== undefined) {
-        setRequire(true);
-      }
-      update = content;
+      update[content.id] = content;
       return update;
     });
-  };
-
-  const onuploadHandle = () => {
-    if (require == false) {
-      alert("내용을 모두 작성해주세요");
-      return;
-    }
-    uploading();
-  };
-  const uploading = () => {
-    require && dbService.saveContent(historyId.id, contents);
+    dbService.saveContent(historyId.id, content);
     history.push({
       pathname: "/",
       state: {
         id: historyId ? historyId.id : null,
         name: historyId ? historyId.name : null,
+        email: historyId ? historyId.email : null,
+        // contentId: contents.id ? contents.id : null,
       },
     });
+  };
+  const updateContent = (content) => {
+    setContents(content);
   };
   return (
     <section className={styles.container}>
@@ -48,6 +40,7 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
           <ContentForm
             contents={contents}
             addContent={addContent}
+            updateContent={updateContent}
             FileInput={FileInput}
           />
         </div>
@@ -55,9 +48,6 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
           <ContentPreview contents={contents} />
         </div>
       </div>
-      <button className={styles.uploadBtn} onClick={onuploadHandle}>
-        업로드
-      </button>
     </section>
   );
 };

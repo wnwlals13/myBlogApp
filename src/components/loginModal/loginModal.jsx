@@ -5,10 +5,10 @@ import styles from "./loginModal.module.css";
 
 const LoginModal = ({ authService }) => {
   const history = useHistory();
-  const onLogIn = (userId, userName) => {
+  const onLogIn = (userId, userName, userEmail) => {
     history.push({
       pathname: "/",
-      state: { id: userId, name: userName },
+      state: { id: userId, name: userName, email: userEmail },
     });
   };
   const onClick = (event) => {
@@ -18,7 +18,7 @@ const LoginModal = ({ authService }) => {
   };
   useEffect(() => {
     authService.onAuthChange((user) => {
-      user && onLogIn(user.uid, user.displayName);
+      user && onLogIn(user.uid, user.displayName, user.email);
     });
   }, []);
   return (

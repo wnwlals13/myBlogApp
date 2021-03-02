@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import styles from "./content_preview.module.css";
 
-const ContentPreview = ({ contents }) => {
+const ContentPreview = memo(({ contents }) => {
   const { title, mainContents, updateFile } = contents;
   const url = updateFile?.fileURL;
   return (
@@ -17,6 +17,6 @@ const ContentPreview = ({ contents }) => {
       <p className={styles.prev__Content}>{mainContents}</p>
     </section>
   );
-};
+});
 
 export default ContentPreview;
