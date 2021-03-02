@@ -4,6 +4,7 @@ import styles from "./content_preview.module.css";
 const ContentPreview = memo(({ contents }) => {
   const { title, mainContents, updateFile } = contents;
   const url = updateFile?.fileURL;
+
   return (
     <section className={styles.prevContainer}>
       <div className={styles.prev__Title}>{title}</div>

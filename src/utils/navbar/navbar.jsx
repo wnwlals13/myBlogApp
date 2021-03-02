@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import MyModal from "../../components/myModal/myModal";
 import styles from "./navbar.module.css";
 
-const Navbar = ({ authService }) => {
+const Navbar = memo(({ authService }) => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [display, setDisplay] = useState(false); //✨modal띄우기 display state를 설정해서 해결!
@@ -74,6 +74,6 @@ const Navbar = ({ authService }) => {
       </section>
     </header>
   );
-};
+});
 
 export default Navbar;

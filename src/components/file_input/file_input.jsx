@@ -9,6 +9,7 @@ const FileInput = ({ imgService, name, onFileChange }) => {
     inputRef.current.click();
   };
   const onImgChange = async (event) => {
+    event.preventDefault();
     setLoading(true);
     const uploaded = await imgService.uploadImg(event.target.files[0]);
     setLoading(false);

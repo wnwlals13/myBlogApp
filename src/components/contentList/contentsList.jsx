@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Database from "../../service/database.js";
+import Footer from "../../utils/footer/footer.jsx";
 import Navbar from "../../utils/navbar/navbar.jsx";
 import Content from "../content/content.jsx";
 import Contents from "../contents/contents.jsx";
@@ -66,6 +67,7 @@ const ContentsList = ({ authService, dbService }) => {
           />
         ))}
       </div>
+      <Footer />
     </section>
   );
 };

@@ -8,6 +8,11 @@ const Hashtag = ({ hashtag, onTagChange }) => {
 
   const onKeyUp = (event) => {
     event.preventDefault();
+    console.log(event.target);
+    if (event.target.key == "Enter") {
+      console.log(event.target + "hash");
+    }
+
     // console.log(event);
     // setHash(event.target.value);
     // if (

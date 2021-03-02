@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Gugi&family=Jua&display=swap");
+@value mainColor from "../../common/colors.css";
+
+.footerContainer {
+  margin-top: 50px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5%;
+  background-color: black;
+}
+
+.footer__text {
+  color: #fff;
+  font-family: "Jua", sans-serif;
+  margin-right: 1%;
+}
+
+.footerContainer img {
+  width: 30px;
+  height: 30px;
+  margin-left: 1%;
+  cursor: pointer;
+}
