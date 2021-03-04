@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import styles from "./hashtag.module.css";
 
 const Hashtag = ({ hashtag, onTagChange }) => {
@@ -9,7 +9,7 @@ const Hashtag = ({ hashtag, onTagChange }) => {
   const onKeyUp = (event) => {
     event.preventDefault();
     console.log(event.target);
-    if (event.target.key == "Enter") {
+    if (event.target.key === "Enter") {
       console.log(event.target + "hash");
     }
 

@@ -7,25 +7,24 @@ const Article = memo(({ authService, dbService }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const history = useHistory();
-  const historys = history?.location?.state;
   const historyId = history?.location?.state?.article;
 
   const { userName, title, mainContents, fileURL, uploadDate } = historyId;
 
-  const goTo = (path) => {
+  const goTo = () => {
     history.push({
-      pathname: path,
+      pathname: "/",
       state: {
-        id: historys ? historys.id : null,
-        name: historys ? historys.name : null,
-        email: historys ? historys.email : null,
-        article: path == "/" ? null : historys.article,
+        id: history?.location?.state.id,
+        name: history?.location?.state.name,
+        email: history?.location?.state.email,
+        article: null,
       },
     });
   };
-  const onUpdateHandle = () => {
-    goTo("/addPost");
-  };
+  // const onUpdateHandle = () => {
+  //   goTo("/addPost");
+  // };
   const onDeleteHandle = () => {
     dbService.removeContent(currentUser, historyId.id);
     goTo("/");
@@ -36,7 +35,7 @@ const Article = memo(({ authService, dbService }) => {
       user && setCurrentEmail(email);
       user && setCurrentUser(user.uid);
     });
-  }, []);
+  }, [authService]);
   useEffect(() => {
     return () => setCurrentUser("");
   }, []);
@@ -48,7 +47,7 @@ const Article = memo(({ authService, dbService }) => {
       <Navbar authService={authService} />
 
       <div className={styles.articleContainer}>
-        <button className={styles.backBtn} onClick={goTo("/")}>
+        <button className={styles.backBtn} onClick={goTo}>
           홈으로
         </button>
 
@@ -58,7 +57,7 @@ const Article = memo(({ authService, dbService }) => {
             <div className={styles.userInfo}>{userName}</div>
             <div className={styles.date}>{uploadDate}</div>
           </div>
-          {historyId.userId == currentEmail && (
+          {historyId.userName === currentEmail && (
             <div className={styles.info__mybtns}>
               {/* <button className={styles.update} onClick={onUpdateHandle}>
                 수정하기

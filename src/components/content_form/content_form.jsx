@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Hashtag from "../hashtag/hashtag";
+// import Hashtag from "../hashtag/hashtag";
 import styles from "./content_form.module.css";
 
 const ContentForm = memo(
@@ -15,7 +15,7 @@ const ContentForm = memo(
     const history = useHistory();
     const historyId = history?.location?.state?.email;
     const userid = historyId ? historyId.split("@") : null;
-    console.log(history.location.state.id);
+    // console.log(history.location.state.id);
     const onUpload = (event) => {
       event.preventDefault();
       const content = {
@@ -34,7 +34,7 @@ const ContentForm = memo(
     //✨hashtag 하고싶다
     const onKeyUp = (e) => {
       e.preventDefault();
-      if (e.keycode == 13) {
+      if (e.keycode === 13) {
         console.log(e);
         return;
       }
@@ -55,7 +55,7 @@ const ContentForm = memo(
         ...contents,
         updateFile,
       });
-    }, [updateFile]);
+    }, [updateFile, contents, updateContent]);
 
     const getFormatDate = (date) => {
       var year = date.getFullYear();

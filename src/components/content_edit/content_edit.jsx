@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Navbar from "../../utils/navbar/navbar";
 import styles from "./content_edit.module.css";
 
 const ContentEdit = ({ contents, FileInput, reviseContent }) => {
@@ -17,7 +16,6 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
     id,
     mainContents,
     title,
-    updateDate,
     uploadDate,
     userId,
   } = history?.location?.state?.article;
@@ -50,7 +48,7 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
   };
   useEffect(() => {
     reviseContent({ ...contents, updateFile });
-  }, [, updateFile]);
+  }, [contents, updateFile, reviseContent]);
   const getFormatDate = (date) => {
     var year = date.getFullYear();
     var month = 1 + date.getMonth();
@@ -73,7 +71,7 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
 
       <div className={styles.fileInput}>
         <FileInput
-          name={updateFile.fileName != "" ? updateFile.fileName : fileName}
+          name={updateFile.fileName !== "" ? updateFile.fileName : fileName}
           onFileChange={onFileChange}
         />
       </div>

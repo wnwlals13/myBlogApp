@@ -1,4 +1,4 @@
-import { firebaseAuth, firebaseDB } from "./firebase";
+import { firebaseDB } from "./firebase";
 
 class Database {
   saveContent(userId, content) {

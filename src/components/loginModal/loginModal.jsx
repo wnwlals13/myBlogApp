@@ -1,16 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar.jsx";
 import styles from "./loginModal.module.css";
 
 const LoginModal = ({ authService }) => {
   const history = useHistory();
-  const onLogIn = (userId, userName, userEmail) => {
-    history.push({
-      pathname: "/",
-      state: { id: userId, name: userName, email: userEmail },
-    });
-  };
+  const onLogIn = useCallback(
+    (userId, userName, userEmail) => {
+      history.push({
+        pathname: "/",
+        state: { id: userId, name: userName, email: userEmail },
+      });
+    },
+    [history]
+  );
   const onClick = (event) => {
     authService
       .login(event.currentTarget.id)
@@ -20,7 +23,7 @@ const LoginModal = ({ authService }) => {
     authService.onAuthChange((user) => {
       user && onLogIn(user.uid, user.displayName, user.email);
     });
-  }, []);
+  }, [authService, onLogIn]);
   return (
     <section className={styles.container}>
       <section className={styles.navContainer}>

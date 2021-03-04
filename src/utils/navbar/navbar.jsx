@@ -4,11 +4,12 @@ import MyModal from "../../components/myModal/myModal";
 import styles from "./navbar.module.css";
 
 const Navbar = memo(({ authService }) => {
+  const [userId, setUserId] = useState(null);
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [display, setDisplay] = useState(false); //✨modal띄우기 display state를 설정해서 해결!
   const history = useHistory();
-  const historyId = history?.location?.state;
+
   const onBtnClick = () => {
     setDisplay(true);
   };
@@ -29,9 +30,9 @@ const Navbar = memo(({ authService }) => {
     history.push({
       pathname: "/",
       state: {
-        id: historyId ? historyId.id : null,
-        name: historyId ? historyId.name : null,
-        email: historyId ? historyId.email : null,
+        id: userId || null,
+        name: name || null,
+        email: email || null,
       },
     });
   };
@@ -40,8 +41,9 @@ const Navbar = memo(({ authService }) => {
     authService.onAuthChange((user) => {
       user && setName(user.displayName);
       user && setEmail(user.email);
+      user && setUserId(user.uid);
     });
-  }, []);
+  }, [authService]);
   return (
     <header className={styles.header}>
       <div className={styles.logo} onClick={goToHome}>

@@ -13,7 +13,7 @@ const MyModal = memo(({ display, onLogout }) => {
   };
   const handleMenu = (event) => {
     const dataId = event.target.dataset.id;
-    if (dataId == "newly") {
+    if (dataId === "newly") {
       history.push({
         pathname: "/addPost",
         state: {
@@ -22,7 +22,7 @@ const MyModal = memo(({ display, onLogout }) => {
           email: historyId ? historyId.email : null,
         },
       });
-    } else if (dataId == "mypost") {
+    } else if (dataId === "mypost") {
       history.push({
         pathname: "/",
         state: {

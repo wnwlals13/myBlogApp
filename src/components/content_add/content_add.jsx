@@ -8,7 +8,7 @@ import styles from "./content_add.module.css";
 
 const ContentAdd = ({ authService, dbService, FileInput }) => {
   const [contents, setContents] = useState([]);
-  const [require, setRequire] = useState(false);
+  // const [require, setRequire] = useState(false);
 
   const history = useHistory();
   const historyId = history?.location?.state;

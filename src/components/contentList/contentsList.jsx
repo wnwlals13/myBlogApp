@@ -1,20 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
-import Database from "../../service/database.js";
 import Footer from "../../utils/footer/footer.jsx";
 import Navbar from "../../utils/navbar/navbar.jsx";
 import Content from "../content/content.jsx";
-import MyModal from "../myModal/myModal.jsx";
 import styles from "./contentsList.module.css";
 
 const ContentsList = ({ authService, dbService }) => {
   const history = useHistory();
   const historyId = history?.location?.state;
   const [contentList, setContentList] = useState([]);
-  // const [article, setArticle] = useState(null);
-  const showLoginModal = () => {
-    history.push("/login");
-  };
+
   useEffect(() => {
     try {
       dbService.readAllContent().then(function (snapshot) {
@@ -36,7 +31,7 @@ const ContentsList = ({ authService, dbService }) => {
     } catch (e) {
       return e;
     }
-  }, []);
+  }, [dbService]);
   useEffect(() => {
     return () => setContentList([]);
   }, []);

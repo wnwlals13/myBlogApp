@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import styles from "./file_input.module.css";
 
 const FileInput = ({ imgService, name, onFileChange }) => {

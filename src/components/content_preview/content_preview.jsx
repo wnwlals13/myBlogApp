@@ -11,7 +11,7 @@ const ContentPreview = memo(({ contents }) => {
       {url && (
         <img
           src={process.env.PUBLIC_URL + url}
-          alt="photo"
+          alt="preview"
           className={styles.imgTag}
         />
       )}
