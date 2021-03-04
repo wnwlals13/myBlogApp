@@ -8,6 +8,7 @@ const FileInput = ({ imgService, name, onFileChange }) => {
     event.preventDefault();
     inputRef.current.click();
   };
+  
   const onImgChange = async (event) => {
     event.preventDefault();
     setLoading(true);

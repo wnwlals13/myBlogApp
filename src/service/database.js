@@ -4,8 +4,15 @@ class Database {
   saveContent(userId, content) {
     firebaseDB.ref(`/contents/${userId}/${content.id}`).set(content);
   }
-  removeContent(userId, content) {
-    firebaseDB.ref(`/contents/${userId}/${content}`);
+  saveCommnet(userId, comment) {
+    //
+  }
+  updateContent(userId, content) {
+    // console.log(userId, content);
+    firebaseDB.ref(`/contents/${userId}/${content.id}`).update(content);
+  }
+  removeContent(userId, contentId) {
+    firebaseDB.ref(`/contents/${userId}/${contentId}`).remove();
   }
   readAllContent() {
     return firebaseDB.ref("contents").once("value");

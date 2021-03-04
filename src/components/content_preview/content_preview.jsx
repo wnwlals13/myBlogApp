@@ -1,10 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import styles from "./content_preview.module.css";
 
 const ContentPreview = memo(({ contents }) => {
-  const { title, mainContents, updateFile } = contents;
-  const url = updateFile?.fileURL;
-
+  const { title, mainContents, updateFile, fileURL } = contents;
+  const url = updateFile?.fileURL || fileURL;
+  useEffect(() => {}, []);
   return (
     <section className={styles.prevContainer}>
       <div className={styles.prev__Title}>{title}</div>

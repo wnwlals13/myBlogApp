@@ -15,15 +15,17 @@ const ContentForm = memo(
     const history = useHistory();
     const historyId = history?.location?.state?.email;
     const userid = historyId ? historyId.split("@") : null;
-
+    console.log(history.location.state.id);
     const onUpload = (event) => {
       event.preventDefault();
       const content = {
         id: Date.now(),
         uploadDate: getFormatDate(new Date()) || "",
-        userId: userid[0] || "",
+        updateDate: getFormatDate(new Date()) || "",
+        userName: userid[0] || "",
+        userId: history?.location?.state?.id || "",
         title: titleRef.current.value || "",
-        mainContent: mainContentRef.current.value || "",
+        mainContents: mainContentRef.current.value || "",
         fileName: updateFile.fileName || "",
         fileURL: updateFile.fileURL || "",
       };
@@ -69,7 +71,6 @@ const ContentForm = memo(
           type="text"
           name="title"
           ref={titleRef}
-          // value={title}
           className={`${styles.title} ${styles.data}`}
           placeholder="제목을 입력하세요."
           onKeyUp={onKeyUp}
@@ -81,7 +82,6 @@ const ContentForm = memo(
         <textarea
           name="mainContents"
           ref={mainContentRef}
-          // value={mainContent}
           className={`${styles.contents} ${styles.data}`}
           placeholder="내용을 입력하세요."
           onKeyUp={onKeyUp}

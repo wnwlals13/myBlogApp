@@ -6,18 +6,12 @@
 }
 
 .contentContainer {
-  margin: 0 10px 10px 0;
-  flex: 33%;
   border-radius: 10px;
   height: 300px;
-  max-width: 390px;
   overflow: hidden;
   border: 0.5px solid mainLightGrey;
   cursor: pointer;
 }
-/* .contentContainer:last-of-type {
-  flex-grow: inherit;
-} */
 
 p {
   margin: 0;

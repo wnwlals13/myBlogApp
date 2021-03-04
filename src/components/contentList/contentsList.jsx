@@ -4,7 +4,6 @@ import Database from "../../service/database.js";
 import Footer from "../../utils/footer/footer.jsx";
 import Navbar from "../../utils/navbar/navbar.jsx";
 import Content from "../content/content.jsx";
-import Contents from "../contents/contents.jsx";
 import MyModal from "../myModal/myModal.jsx";
 import styles from "./contentsList.module.css";
 
@@ -12,46 +11,46 @@ const ContentsList = ({ authService, dbService }) => {
   const history = useHistory();
   const historyId = history?.location?.state;
   const [contentList, setContentList] = useState([]);
-  const [article, setArticle] = useState(null);
-  console.log(
-    Object.keys(contentList).map((one) => {
-      Object.keys(contentList[one]).map((data) => console.log(data));
-    })
-  );
+  // const [article, setArticle] = useState(null);
   const showLoginModal = () => {
     history.push("/login");
   };
   useEffect(() => {
-    dbService.readAllContent().then(function (snapshot) {
-      if (snapshot.exists()) {
-        let i = 0;
-        snapshot.forEach((child) => {
-          setContentList((contentList) => {
-            const update = { ...contentList };
-            update[i] = child.val();
-            i += 1;
-            return update;
+    try {
+      dbService.readAllContent().then(function (snapshot) {
+        if (snapshot.exists()) {
+          snapshot.forEach((child) => {
+            const results = child.val();
+            Object.keys(results).forEach((item) => {
+              setContentList((contentList) => {
+                const update = { ...contentList };
+                update[item] = results[item];
+                return update;
+              });
+            });
           });
-        });
-      } else {
-        setContentList([]);
-      }
-    });
-    // console.log(contentList);
-    // for (let i = 0; i < contentList.length; i++) {
-    //   console.log(contentList[i]);
-    // }
+        } else {
+          setContentList([]);
+        }
+      });
+    } catch (e) {
+      return e;
+    }
   }, []);
-  // console.log(contentList);
-  const getArticle = (result) => {
-    setArticle(result);
+  useEffect(() => {
+    return () => setContentList([]);
+  }, []);
+  const oneArticle = (result) => {
+    console.log(result);
+    console.log(historyId);
+    // setArticle(result);
     history.push({
       pathname: "/viewPost",
       state: {
         id: historyId ? historyId.id : null,
         name: historyId ? historyId.name : null,
         email: historyId ? historyId.email : null,
-        article: result ? result : null,
+        article: result,
       },
     });
   };
@@ -60,10 +59,10 @@ const ContentsList = ({ authService, dbService }) => {
       <Navbar authService={authService} />
       <div className={styles.contentsContainer}>
         {Object.keys(contentList).map((key) => (
-          <Contents
+          <Content
             key={key}
-            property={contentList[key]}
-            article={getArticle}
+            content={contentList[key]}
+            getArticle={oneArticle}
           />
         ))}
       </div>

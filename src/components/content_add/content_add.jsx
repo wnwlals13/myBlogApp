@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
+import ContentEdit from "../content_edit/content_edit";
 import ContentForm from "../content_form/content_form";
 import ContentPreview from "../content_preview/content_preview";
 import styles from "./content_add.module.css";
@@ -11,13 +12,8 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
 
   const history = useHistory();
   const historyId = history?.location?.state;
-  const addContent = (content) => {
-    setContents((contents) => {
-      let update = { ...contents };
-      update[content.id] = content;
-      return update;
-    });
-    dbService.saveContent(historyId.id, content);
+  const historyArticle = history?.location?.state?.article;
+  const goToMain = () => {
     history.push({
       pathname: "/",
       state: {
@@ -28,24 +24,52 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
       },
     });
   };
+  const addContent = (content) => {
+    setContents((contents) => {
+      let update = { ...contents };
+      update[content.id] = content;
+      return update;
+    });
+    dbService.saveContent(historyId.id, content);
+    goToMain();
+  };
   const updateContent = (content) => {
     setContents(content);
   };
+  const reviseContent = (update) => {
+    setContents(update);
+    console.log(update);
+    // dbService.updateContent(update.id, update);
+    // goToMain();
+  };
+
+  useEffect(() => {
+    setContents(historyArticle);
+  }, [historyArticle]);
   return (
     <section className={styles.container}>
       <Navbar authService={authService} />
 
       <div className={styles.addContainer}>
         <div className={styles.inputWrap}>
-          <ContentForm
-            contents={contents}
-            addContent={addContent}
-            updateContent={updateContent}
-            FileInput={FileInput}
-          />
+          {!historyArticle && (
+            <ContentForm
+              contents={contents}
+              addContent={addContent}
+              updateContent={updateContent}
+              FileInput={FileInput}
+            />
+          )}
+          {historyArticle && (
+            <ContentEdit
+              contents={contents}
+              FileInput={FileInput}
+              reviseContent={reviseContent}
+            />
+          )}
         </div>
         <div className={styles.prevWrap}>
-          <ContentPreview contents={contents} />
+          {contents && <ContentPreview contents={contents} />}
         </div>
       </div>
     </section>

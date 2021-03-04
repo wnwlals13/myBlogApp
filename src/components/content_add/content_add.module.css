@@ -14,8 +14,7 @@
   flex: 1 1 45%;
 }
 
-
-@media screen and (max-width: 667px) {
+@media screen and (max-width: 867px) {
   .prevWrap {
     display: none;
   }

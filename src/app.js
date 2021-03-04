@@ -27,13 +27,13 @@ function App({ authService, dbService, FileInput }) {
           <Route path="/viewPost">
             <Article authService={authService} dbService={dbService} />
           </Route>
-          <Route path="/editPost">
+          {/* <Route path="/editPost">
             <ContentEdit
               authService={authService}
               dbService={dbService}
               FileInput={FileInput}
             />
-          </Route>
+          </Route> */}
         </Switch>
       </BrowserRouter>
     </div>
