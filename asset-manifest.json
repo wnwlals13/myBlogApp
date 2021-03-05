@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/wnwlals13/myBlogApp/static/css/main.837ba715.chunk.css",
+    "main.js": "/wnwlals13/myBlogApp/static/js/main.d1c46734.chunk.js",
+    "main.js.map": "/wnwlals13/myBlogApp/static/js/main.d1c46734.chunk.js.map",
+    "runtime-main.js": "/wnwlals13/myBlogApp/static/js/runtime-main.e4c31143.js",
+    "runtime-main.js.map": "/wnwlals13/myBlogApp/static/js/runtime-main.e4c31143.js.map",
+    "static/js/2.b291dc07.chunk.js": "/wnwlals13/myBlogApp/static/js/2.b291dc07.chunk.js",
+    "static/js/2.b291dc07.chunk.js.map": "/wnwlals13/myBlogApp/static/js/2.b291dc07.chunk.js.map",
+    "static/js/3.14dd2b19.chunk.js": "/wnwlals13/myBlogApp/static/js/3.14dd2b19.chunk.js",
+    "static/js/3.14dd2b19.chunk.js.map": "/wnwlals13/myBlogApp/static/js/3.14dd2b19.chunk.js.map",
+    "index.html": "/wnwlals13/myBlogApp/index.html",
+    "static/css/main.837ba715.chunk.css.map": "/wnwlals13/myBlogApp/static/css/main.837ba715.chunk.css.map",
+    "static/js/2.b291dc07.chunk.js.LICENSE.txt": "/wnwlals13/myBlogApp/static/js/2.b291dc07.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4c31143.js",
+    "static/js/2.b291dc07.chunk.js",
+    "static/css/main.837ba715.chunk.css",
+    "static/js/main.d1c46734.chunk.js"
+  ]
+}
