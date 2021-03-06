@@ -55,7 +55,7 @@ const ContentForm = memo(
         ...contents,
         updateFile,
       });
-    }, [updateFile, contents, updateContent]);
+    }, [updateFile]);
 
     const getFormatDate = (date) => {
       var year = date.getFullYear();

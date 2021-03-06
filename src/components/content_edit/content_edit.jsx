@@ -9,6 +9,7 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
     fileName: null,
     fileURL: null,
   });
+  console.log(contents);
   const history = useHistory();
   const {
     fileName,
@@ -48,7 +49,7 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
   };
   useEffect(() => {
     reviseContent({ ...contents, updateFile });
-  }, [contents, updateFile, reviseContent]);
+  }, [updateFile]);
   const getFormatDate = (date) => {
     var year = date.getFullYear();
     var month = 1 + date.getMonth();
@@ -71,7 +72,7 @@ const ContentEdit = ({ contents, FileInput, reviseContent }) => {
 
       <div className={styles.fileInput}>
         <FileInput
-          name={updateFile.fileName !== "" ? updateFile.fileName : fileName}
+          name={updateFile.fileName !== null ? updateFile.fileName : fileName}
           onFileChange={onFileChange}
         />
       </div>

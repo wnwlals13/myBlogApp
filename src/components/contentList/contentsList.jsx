@@ -36,8 +36,6 @@ const ContentsList = ({ authService, dbService }) => {
     return () => setContentList([]);
   }, []);
   const oneArticle = (result) => {
-    console.log(result);
-    console.log(historyId);
     // setArticle(result);
     history.push({
       pathname: "/viewPost",

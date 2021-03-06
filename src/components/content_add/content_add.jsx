@@ -38,14 +38,14 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
   };
   const reviseContent = (update) => {
     setContents(update);
-    console.log(update);
-    // dbService.updateContent(update.id, update);
-    // goToMain();
+    dbService.updateContent(update.userId, update);
+    goToMain();
   };
 
   useEffect(() => {
     setContents(historyArticle);
   }, [historyArticle]);
+
   return (
     <section className={styles.container}>
       <Navbar authService={authService} />

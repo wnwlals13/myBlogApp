@@ -11,7 +11,7 @@ const Article = memo(({ authService, dbService }) => {
 
   const { userName, title, mainContents, fileURL, uploadDate } = historyId;
 
-  const goTo = () => {
+  const goToHome = () => {
     history.push({
       pathname: "/",
       state: {
@@ -22,12 +22,21 @@ const Article = memo(({ authService, dbService }) => {
       },
     });
   };
-  // const onUpdateHandle = () => {
-  //   goTo("/addPost");
-  // };
+  const goToUpdate = () => {};
+  const onUpdateHandle = () => {
+    history.push({
+      pathname: "/editPost",
+      state: {
+        id: history?.location?.state.id,
+        name: history?.location?.state.name,
+        email: history?.location?.state.email,
+        article: historyId,
+      },
+    });
+  };
   const onDeleteHandle = () => {
     dbService.removeContent(currentUser, historyId.id);
-    goTo("/");
+    goToHome();
   };
   useEffect(() => {
     authService.onAuthChange((user) => {
@@ -47,7 +56,7 @@ const Article = memo(({ authService, dbService }) => {
       <Navbar authService={authService} />
 
       <div className={styles.articleContainer}>
-        <button className={styles.backBtn} onClick={goTo}>
+        <button className={styles.backBtn} onClick={goToHome}>
           홈으로
         </button>
 
@@ -59,9 +68,9 @@ const Article = memo(({ authService, dbService }) => {
           </div>
           {historyId.userName === currentEmail && (
             <div className={styles.info__mybtns}>
-              {/* <button className={styles.update} onClick={onUpdateHandle}>
+              <button className={styles.update} onClick={onUpdateHandle}>
                 수정하기
-              </button> */}
+              </button>
               <button className={styles.delete} onClick={onDeleteHandle}>
                 삭제하기
               </button>

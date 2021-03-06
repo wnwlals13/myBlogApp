@@ -2,7 +2,7 @@
 
 ## 구현환경
 
-: React Hooks, firebase, cloudinary, PostCSS
+: React Hooks, firebase Auth, firebase realtime database, cloudinary
 
 #### 주요기능
 

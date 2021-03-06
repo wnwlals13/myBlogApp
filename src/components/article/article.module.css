@@ -20,7 +20,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-items: left;
-  width: 90%;
+  width: 80%;
+  max-width: 800px;
 }
 
 .backBtn {
@@ -34,20 +35,21 @@ button {
 .file {
   height: 450px;
   padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .title {
   font-size: 2.3rem;
   font-family: "Do Hyeon", sans-serif;
-  margin: 1rem 0 2rem 0;
+  margin: 1rem 0 1rem 0;
 }
 
 .info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 0.5rem;
+  padding: 0 10px;
 }
 
 .info__Text {
