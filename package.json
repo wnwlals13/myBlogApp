@@ -5,17 +5,20 @@
   "homepage": "https://wnwlals13.github.io/myBlogApp/",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@testing-library/react": "^11.2.5",
+    "@testing-library/user-event": "^12.8.1",
+    "arch": "x64",
     "cloudinary": "^1.25.0",
-    "firebase": "^8.2.9",
+    "esbuild": "^0.8.56",
+    "firebase": "^8.2.10",
     "gh-pages": "^3.1.0",
+    "os": "darwin",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",
