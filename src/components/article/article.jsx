@@ -69,7 +69,7 @@ const Article = memo(({ authService, dbService }) => {
   }, []);
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} />
+      <Navbar authService={authService}  dbService={dbService}/>
 
       <div className={styles.articleContainer}>
         <button className={styles.backBtn} onClick={goToHome}>
@@ -79,8 +79,8 @@ const Article = memo(({ authService, dbService }) => {
         <div className={styles.title}>{title}</div>
         <div className={styles.info}>
           <div className={styles.info__Text}>
-            <div className={styles.userInfo}>hello</div>
-            <div className={styles.date}>hello</div>
+            <div className={styles.userInfo}>{userName}</div>
+            <div className={styles.date}>{uploadDate}</div>
           </div>
           {historyId?.userName === currentEmail && (
             <div className={styles.info__mybtns}>

@@ -1,0 +1,13 @@
+.sidebarWrapper {
+  padding: 0;
+  padding-left: 15px;
+  list-style-type: none;
+}
+
+.sidebarWrapper h3 {
+  margin-bottom: 10px;
+}
+
+.sideLI {
+  color: #fff;
+}

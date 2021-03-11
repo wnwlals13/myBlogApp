@@ -53,7 +53,7 @@ const ContentsList = ({ authService, dbService }) => {
   };
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} />
+      <Navbar authService={authService} dbService={dbService}/>
       <div className={styles.contentsContainer}>
         {Object.keys(contentList).map((key) => (
           <Content

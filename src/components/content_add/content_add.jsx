@@ -48,7 +48,7 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
 
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} />
+      <Navbar authService={authService} dbService={dbService} />
 
       <div className={styles.addContainer}>
         <div className={styles.inputWrap}>
