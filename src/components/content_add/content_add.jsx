@@ -68,6 +68,7 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
             />
           )}
         </div>
+
         <div className={styles.prevWrap}>
           {contents && <ContentPreview contents={contents} />}
         </div>

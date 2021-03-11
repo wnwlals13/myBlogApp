@@ -1,13 +1,13 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
-// import Hashtag from "../hashtag/hashtag";
 import styles from "./content_form.module.css";
+import Hashtag from "../hashtag/hashtag";
 
 const ContentForm = memo(
   ({ contents, addContent, updateContent, FileInput }) => {
     const titleRef = useRef();
     const mainContentRef = useRef();
-    // const [hashtag, setHashtag] = useState([]);
+    const [hashtag, setHashtag] = useState([]);
     const [updateFile, setUpdateFile] = useState({
       fileName: null,
       fileURL: null,
@@ -18,26 +18,34 @@ const ContentForm = memo(
     // console.log(history.location.state.id);
     const onUpload = (event) => {
       event.preventDefault();
+      if (titleRef.current.value === "") {
+        alert("제목을 입력해주세요.");
+        return;
+      } else if (mainContentRef.current.value === "") {
+        alert("내용을 입력해주세요.");
+        return;
+      } else if (hashtag.length <= 0) {
+        alert("태그를 하나이상 입력해주세요.");
+        return;
+      }
       const content = {
         id: Date.now(),
         uploadDate: getFormatDate(new Date()) || "",
         updateDate: getFormatDate(new Date()) || "",
         userName: userid[0] || "",
         userId: history?.location?.state?.id || "",
-        title: titleRef.current.value || "",
-        mainContents: mainContentRef.current.value || "",
+        title: titleRef.current.value,
+        mainContents: mainContentRef.current.value,
         fileName: updateFile.fileName || "",
         fileURL: updateFile.fileURL || "",
+        hashtag: hashtag,
       };
+      console.log(titleRef.current.value, content);
       addContent({ ...content });
     };
     //✨hashtag 하고싶다
     const onKeyUp = (e) => {
       e.preventDefault();
-      if (e.keycode === 13) {
-        console.log(e);
-        return;
-      }
       updateContent({
         ...contents,
         [e.currentTarget.name]: e.currentTarget.value,
@@ -48,6 +56,10 @@ const ContentForm = memo(
 
     const onFileChange = (file) => {
       file && setUpdateFile({ fileName: file.name, fileURL: file.url });
+    };
+
+    const hashTagHandle = (data) => {
+      setHashtag(data);
     };
 
     useEffect(() => {
@@ -66,7 +78,7 @@ const ContentForm = memo(
       return year + "-" + month + "-" + day;
     };
     return (
-      <form className={styles.inputContainer}>
+      <section className={styles.inputContainer}>
         <input
           type="text"
           name="title"
@@ -74,11 +86,17 @@ const ContentForm = memo(
           className={`${styles.title} ${styles.data}`}
           placeholder="제목을 입력하세요."
           onKeyUp={onKeyUp}
+          autoFocus="True"
         />
 
         <div className={styles.fileInput}>
           <FileInput name={updateFile.fileName} onFileChange={onFileChange} />
+          <div className={styles.textDeco}>
+            <p>h1</p>
+            <p>Bold</p>
+          </div>
         </div>
+
         <textarea
           name="mainContents"
           ref={mainContentRef}
@@ -86,13 +104,13 @@ const ContentForm = memo(
           placeholder="내용을 입력하세요."
           onKeyUp={onKeyUp}
         ></textarea>
-        {/* <div className={`${styles.hashTag__container} ${styles.data}`}>
-          <Hashtag hashtag={hashtag} />
-        </div> */}
+        <div className={`${styles.hashTag__container} ${styles.data}`}>
+          <Hashtag setHashtag={hashTagHandle} />
+        </div>
         <button className={styles.uploadBtn} onClick={onUpload}>
           업로드
         </button>
-      </form>
+      </section>
     );
   }
 );

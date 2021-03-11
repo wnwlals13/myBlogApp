@@ -1,63 +1,60 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./hashtag.module.css";
 
-const Hashtag = ({ hashtag, onTagChange }) => {
-  // const [hash, setHash] = useState("");
+const Hashtag = ({ setHashtag }) => {
+  const [hash, setHash] = useState([]);
   const hashOneRef = useRef();
   const hashRef = useRef();
 
   const onKeyUp = (event) => {
     event.preventDefault();
-    console.log(event.target);
-    if (event.target.key === "Enter") {
-      console.log(event.target + "hash");
+    if (event.keyCode === 13) {
+      if (hash.length >= 2) {
+        event.target.className = `${styles.hashTag} ${styles.error}`;
+        hashRef.current.value = "2개 이상 태그를 입력할 수 없습니다.";
+        setTimeout(() => {
+          hashRef.current.value = "";
+        }, 1000);
+        return; //hashtag 제한 2개
+      }
+      setHash([...hash, hashRef.current.value]);
+      hashRef.current.value = "";
     }
-
-    // console.log(event);
-    // setHash(event.target.value);
-    // if (
-    //   event.keyCode == 13 &&
-    //   event.currentTarget.value.length > 0 &&
-    //   hashtag.length < 3
-    // ) {
-    //   console.log("sdsd");
-    //   let update = event.currentTarget.value;
-    //   //   setHashtag([...hashtag, update]);
-    //   onTagChange([update]);
-    //   hashRef.current.value = "";
-    // }
   };
+  useEffect(() => {
+    setHashtag(hash);
+  }, [hash]);
   const onClickEachHash = (event) => {
-    hashtag.forEach((data) => {
+    hash.forEach((data) => {
       if (data.match(event.currentTarget.innerText)) {
         removeEachHash(data);
       }
     });
   };
   const removeEachHash = (data) => {
-    const index = hashtag.indexOf(data);
-    const update = hashtag.splice(index, 0);
-    // setHashtag(update);
-    onTagChange([update]);
+    const temp = [...hash];
+    const index = temp.indexOf(data);
+    temp.splice(index, 1);
+    setHash(temp);
   };
   return (
     <>
       <input
         type="text"
-        className={`${styles.hashTag}  ${styles.data}`}
+        className={styles.hashTag}
         ref={hashRef}
         onKeyUp={onKeyUp}
-        placeholder="#hashtag"
+        placeholder="#Enter tag "
       />
       <ul ref={hashOneRef} className={styles.hashTag__made}>
-        {hashtag.map((hash) => {
+        {hash.map((tag) => {
           return (
             <li
-              key={hash}
+              key={tag}
               className={styles.hashTag__one}
               onClick={onClickEachHash}
             >
-              {hash}
+              {tag}
             </li>
           );
         })}

@@ -2,9 +2,10 @@
 @value mainColor from "../../common/colors.css";
 
 .hashTag {
-  flex: 20%;
+  flex: 40%;
   border: 0;
-  border-bottom: 1px solid mainGrey;
+  font-size: 15px;
+  padding-bottom: 10px;
 }
 
 .hashTag:focus {
@@ -12,7 +13,8 @@
 }
 
 .hashTag__made {
-  flex: 80%;
+  flex: 60%;
+  height: 100%;
   padding: 0;
   margin: 0;
 }
@@ -38,4 +40,8 @@
   cursor: pointer;
   height: 100%;
   width: 10px;
+}
+
+.error {
+  color: #f44336;
 }

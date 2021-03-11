@@ -44,6 +44,12 @@ button {
   margin: 1rem 0 1rem 0;
 }
 
+.content {
+  width: 100%;
+  height: 100%;
+  min-height: 100px;
+}
+
 .info {
   display: flex;
   justify-content: space-between;
@@ -65,9 +71,48 @@ button {
   outline: 0;
   border: 0;
   padding: 0.3rem;
-  background: mainColor;
-  color: mainWhite;
+  background-color: transparent;
 }
+
+.info__mybtns button span {
+  position: relative;
+}
+
+.info__mybtns button span:before {
+  content: "";
+  position: absolute;
+  background-color: #8fd3f4;
+  height: 1px;
+  width: 0;
+  left: 0;
+  bottom: -5px;
+  /* transform: translateX(-50%); */
+  transition: all 0.2s ease-in-out;
+}
+
+.info__mybtns button span:hover:before {
+  width: 100%;
+}
+
 .delete {
   margin-left: 0.5rem;
+}
+
+.hashtagWrapper {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+.hashtagWrapper p {
+  width: 80px;
+  color: mainDeepGrey;
+  margin-bottom: 10px;
+}
+.hashtag {
+  background-color: mainColor;
+  display: inline;
+  border-radius: 5px;
+  padding: 0 5px;
+  color: mainWhite;
 }

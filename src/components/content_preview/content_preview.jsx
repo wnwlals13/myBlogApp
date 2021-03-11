@@ -7,13 +7,7 @@ const ContentPreview = memo(({ contents }) => {
   return (
     <section className={styles.prevContainer}>
       <div className={styles.prev__Title}>{title}</div>
-      {url && (
-        <img
-          src={process.env.PUBLIC_URL + url}
-          alt="preview"
-          className={styles.imgTag}
-        />
-      )}
+      {url && <img src={url} alt="preview" className={styles.imgTag} />}
       <p className={styles.prev__Content}>{mainContents}</p>
     </section>
   );

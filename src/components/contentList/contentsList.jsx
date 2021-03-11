@@ -9,6 +9,7 @@ const ContentsList = ({ authService, dbService }) => {
   const history = useHistory();
   const historyId = history?.location?.state;
   const [contentList, setContentList] = useState([]);
+  const [article, setArticle] = useState({});
 
   useEffect(() => {
     try {
@@ -32,11 +33,14 @@ const ContentsList = ({ authService, dbService }) => {
       return e;
     }
   }, [dbService]);
-  useEffect(() => {
-    return () => setContentList([]);
-  }, []);
+  // useEffect(() => {
+  //   return () => setContentList([]);
+  // }, []);
+  // useEffect(() => {
+  //   console.log(article);
+  //   getArticle(article);
+  // }, [article]);
   const oneArticle = (result) => {
-    // setArticle(result);
     history.push({
       pathname: "/viewPost",
       state: {
