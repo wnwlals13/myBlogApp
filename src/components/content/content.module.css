@@ -6,11 +6,27 @@
 }
 
 .contentContainer {
+  background: #fff;
   border-radius: 10px;
   height: 300px;
   overflow: hidden;
   border: 0.5px solid mainLightGrey;
+  box-shadow: 1px 4px 15px 0px rgba(0, 0, 0, 0.03);
+  -webkit-box-shadow: 1px 4px 15px 0px rgba(0, 0, 0, 0.03);
+  -moz-box-shadow: 1px 4px 15px 0px rgba(0, 0, 0, 0.3);
   cursor: pointer;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 p {

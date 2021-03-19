@@ -8,7 +8,9 @@ const Footer = memo((props) => {
   };
   return (
     <footer className={styles.footerContainer}>
-      <div className={styles.footer__text}>More about 주인장</div>
+      <div className={styles.footer__text}>
+        © 2021, wnwlals13 All rights reserved.
+      </div>
       <img
         className={styles.footer__github}
         src={gitImg}

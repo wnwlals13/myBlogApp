@@ -7,7 +7,7 @@
   display: flex;
   flex-direction: column;
   padding-right: 2%;
-  height: 80vh;
+
   /* flex: 1 1 70%; */
 }
 
@@ -27,15 +27,14 @@
   border: 0;
   border-bottom: 1px solid mainGrey;
 }
-.contents {
-  resize: none;
-  height: 100%;
-  font-size: 15px;
+
+.mainContents {
+  height: 350px;
 }
 
 .hashTag__container {
-  padding: 10px 0 0;
   border: 0;
+  padding: 0;
   display: flex;
   align-items: center;
   width: 100%;
@@ -63,17 +62,4 @@
 .fileInput {
   display: flex;
   justify-content: space-between;
-}
-.textDeco {
-  flex-basis: 20%;
-  display: flex;
-  align-items: center;
-}
-.textDeco p {
-  text-align: center;
-  cursor: pointer;
-}
-.textDeco p:hover {
-  font-weight: bold;
-  border-radius: 5px;
 }

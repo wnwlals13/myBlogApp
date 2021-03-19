@@ -1,23 +1,15 @@
 import React, { memo, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
-import Comments from "../comment/comment";
 import styles from "./article.module.css";
+import Comments from "../comments/comments";
+import Parser from "html-react-parser";
 
 const Article = memo(({ authService, dbService }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentUser, setCurrentUser] = useState("");
   const history = useHistory();
   const historyId = history?.location?.state?.article;
-
-  // const {
-  //   userName,
-  //   title,
-  //   mainContents,
-  //   fileURL,
-  //   uploadDate,
-  //   hashtag,
-  // } = historyId;
 
   const id = historyId?.id || "";
   const userName = historyId?.userName || "";
@@ -38,7 +30,6 @@ const Article = memo(({ authService, dbService }) => {
       },
     });
   };
-  const goToUpdate = () => {};
   const onUpdateHandle = () => {
     history.push({
       pathname: "/editPost",
@@ -69,7 +60,7 @@ const Article = memo(({ authService, dbService }) => {
   }, []);
   return (
     <section className={styles.container}>
-      <Navbar authService={authService}  dbService={dbService}/>
+      <Navbar authService={authService} dbService={dbService} />
 
       <div className={styles.articleContainer}>
         <button className={styles.backBtn} onClick={goToHome}>
@@ -94,7 +85,7 @@ const Article = memo(({ authService, dbService }) => {
           )}
         </div>
         {fileURL && <img className={styles.file} src={fileURL} alt="img" />}
-        <div className={styles.content}>{mainContents}</div>
+        <div className={styles.content}>{Parser(mainContents)}</div>
         <ul className={styles.hashtagWrapper}>
           <p>#HashTag</p>
           {hashtag &&

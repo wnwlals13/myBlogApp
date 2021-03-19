@@ -4,6 +4,7 @@
 .addContainer {
   display: flex;
   justify-content: center;
+  height: 500px;
   margin: 100px 5% 0 5%;
 }
 

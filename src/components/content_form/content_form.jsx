@@ -2,12 +2,13 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { useHistory } from "react-router-dom";
 import styles from "./content_form.module.css";
 import Hashtag from "../hashtag/hashtag";
+import Editor from "../editor/editor";
 
 const ContentForm = memo(
   ({ contents, addContent, updateContent, FileInput }) => {
     const titleRef = useRef();
-    const mainContentRef = useRef();
     const [hashtag, setHashtag] = useState([]);
+    const [mainText, setMainText] = useState("");
     const [updateFile, setUpdateFile] = useState({
       fileName: null,
       fileURL: null,
@@ -21,12 +22,8 @@ const ContentForm = memo(
       if (titleRef.current.value === "") {
         alert("제목을 입력해주세요.");
         return;
-      } else if (mainContentRef.current.value === "") {
-        alert("내용을 입력해주세요.");
-        return;
-      } else if (hashtag.length <= 0) {
-        alert("태그를 하나이상 입력해주세요.");
-        return;
+      } else if (mainText == undefined) {
+        alert("내용을 입력해주세요");
       }
       const content = {
         id: Date.now(),
@@ -35,7 +32,7 @@ const ContentForm = memo(
         userName: userid[0] || "",
         userId: history?.location?.state?.id || "",
         title: titleRef.current.value,
-        mainContents: mainContentRef.current.value,
+        mainContents: mainText || "",
         fileName: updateFile.fileName || "",
         fileURL: updateFile.fileURL || "",
         hashtag: hashtag,
@@ -61,13 +58,16 @@ const ContentForm = memo(
     const hashTagHandle = (data) => {
       setHashtag(data);
     };
-
+    const onChangeField = (data) => {
+      data && setMainText(data.content);
+    };
     useEffect(() => {
       updateContent({
         ...contents,
+        ["mainContents"]: mainText,
         updateFile,
       });
-    }, [updateFile]);
+    }, [updateFile, mainText]);
 
     const getFormatDate = (date) => {
       var year = date.getFullYear();
@@ -88,25 +88,17 @@ const ContentForm = memo(
           onKeyUp={onKeyUp}
           autoFocus="True"
         />
-
         <div className={styles.fileInput}>
           <FileInput name={updateFile.fileName} onFileChange={onFileChange} />
-          <div className={styles.textDeco}>
-            <p>h1</p>
-            <p>Bold</p>
-          </div>
         </div>
 
-        <textarea
-          name="mainContents"
-          ref={mainContentRef}
-          className={`${styles.contents} ${styles.data}`}
-          placeholder="내용을 입력하세요."
-          onKeyUp={onKeyUp}
-        ></textarea>
-        <div className={`${styles.hashTag__container} ${styles.data}`}>
-          <Hashtag setHashtag={hashTagHandle} />
+        <div className={styles.mainContents}>
+          <Editor mainContents={mainText} onChangeField={onChangeField} />
         </div>
+
+        {/* <div className={`${styles.hashTag__container} ${styles.data}`}>
+          <Hashtag setHashtag={hashTagHandle} />
+        </div> */}
         <button className={styles.uploadBtn} onClick={onUpload}>
           업로드
         </button>

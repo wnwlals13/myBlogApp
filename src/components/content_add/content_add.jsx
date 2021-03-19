@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
-import ContentEdit from "../content_edit/content_edit";
 import ContentForm from "../content_form/content_form";
 import ContentPreview from "../content_preview/content_preview";
 import styles from "./content_add.module.css";
 
-const ContentAdd = ({ authService, dbService, FileInput }) => {
+const ContentAdd = memo(({ authService, dbService, FileInput }) => {
   const [contents, setContents] = useState([]);
   // const [require, setRequire] = useState(false);
 
@@ -36,11 +35,6 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
   const updateContent = (content) => {
     setContents(content);
   };
-  const reviseContent = (update) => {
-    setContents(update);
-    dbService.updateContent(update.userId, update);
-    goToMain();
-  };
 
   useEffect(() => {
     setContents(historyArticle);
@@ -60,13 +54,13 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
               FileInput={FileInput}
             />
           )}
-          {historyArticle && (
+          {/* {historyArticle && (
             <ContentEdit
               contents={contents}
               FileInput={FileInput}
               reviseContent={reviseContent}
             />
-          )}
+          )} */}
         </div>
 
         <div className={styles.prevWrap}>
@@ -75,6 +69,6 @@ const ContentAdd = ({ authService, dbService, FileInput }) => {
       </div>
     </section>
   );
-};
+});
 
 export default ContentAdd;

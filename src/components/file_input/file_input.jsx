@@ -1,14 +1,14 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import styles from "./file_input.module.css";
 
-const FileInput = ({ imgService, name, onFileChange }) => {
+const FileInput = memo(({ imgService, name, onFileChange }) => {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef();
   const onButtonClick = (event) => {
     event.preventDefault();
     inputRef.current.click();
   };
-  
+
   const onImgChange = async (event) => {
     event.preventDefault();
     setLoading(true);
@@ -35,6 +35,6 @@ const FileInput = ({ imgService, name, onFileChange }) => {
       </div>
     </div>
   );
-};
+});
 
 export default FileInput;

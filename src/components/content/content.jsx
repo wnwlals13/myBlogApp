@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import styles from "./content.module.css";
 
 const Content = memo(({ content, getArticle }) => {
-  const { userName, title, mainContents, fileURL } = content;
+  const { userName, title, fileURL } = content;
   const onClickHandle = () => {
     getArticle(content);
   };
@@ -15,7 +15,6 @@ const Content = memo(({ content, getArticle }) => {
       )}
       <div className={styles.metadata}>
         <p className={styles.title}>{title}</p>
-        <p className={styles.body}>{mainContents}</p>
       </div>
       <div className={styles.userInfo}>
         <div className={styles.id}>by {userName}</div>

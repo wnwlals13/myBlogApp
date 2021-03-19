@@ -9,7 +9,6 @@ const ContentsList = ({ authService, dbService }) => {
   const history = useHistory();
   const historyId = history?.location?.state;
   const [contentList, setContentList] = useState([]);
-  const [article, setArticle] = useState({});
 
   useEffect(() => {
     try {
@@ -53,7 +52,7 @@ const ContentsList = ({ authService, dbService }) => {
   };
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} dbService={dbService}/>
+      <Navbar authService={authService} dbService={dbService} />
       <div className={styles.contentsContainer}>
         {Object.keys(contentList).map((key) => (
           <Content

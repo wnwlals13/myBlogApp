@@ -1,18 +1,19 @@
 @value mainColor from '../../common/colors.css';
 @value mainGrey from '../../common/colors.css';
 @value mainWhite from '../../common/colors.css';
+@import url("https://fonts.googleapis.com/css2?family=Chango&display=swap");
 
 .header {
   position: fixed;
   height: 60px;
   width: 100vw;
   top: 0;
-  border-bottom: 1px solid mainGrey;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 15px 50px;
-  background: mainWhite;
+  font-size: 18px;
+  background: rgba(255, 255, 255, 0.8);
   z-index: 5;
 }
 
@@ -73,15 +74,9 @@
 .sideSection.show .sidebarInner {
   left: 0;
 }
-
-/* .side.show {
-  left: 0;
-  opacity: 1;
-  display: block;
-} */
-
 .sidebar {
   display: inline;
+  font-family: "Chango", cursive;
 }
 
 .search {

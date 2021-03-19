@@ -10,6 +10,19 @@
   left: 0;
   right: 0;
   bottom: 0;
+  background: #fff;
+  z-index: 100;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    /* transform: translateY(20px); */
+  }
+  to {
+    opacity: 1;
+    /* transform: none; */
+  }
 }
 
 .loginContainer {
@@ -24,8 +37,9 @@
   align-items: center;
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  animation-name: modalopen;
-  animation-duration: 0.5s;
+  animation: fadeIn 0.5s ease-in-out;
+  background: #fff;
+  z-index: 100;
 }
 
 .loginHeader {
@@ -75,13 +89,4 @@
   font-size: 20px;
   cursor: pointer;
   border-bottom: 1px solid white;
-}
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
