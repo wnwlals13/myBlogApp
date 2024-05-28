@@ -1,9 +1,9 @@
 import React, { memo } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./myModal.module.css";
 
 const MyModal = memo(({ display, onLogout }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const historyId = history?.location?.state;
   // console.log(historyId);
   const onthirdClick = () => {

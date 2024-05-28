@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
 import Editor from "../editor/editor";
 import styles from "./content_edit.module.css";
@@ -12,7 +12,7 @@ const ContentEdit = ({ contents, authService, dbService, FileInput }) => {
     fileURL: null,
   });
   console.log(contents);
-  const history = useHistory();
+  const history = useNavigate();
   const {
     fileName,
     fileURL,

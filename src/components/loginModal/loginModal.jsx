@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar.jsx";
 import styles from "./loginModal.module.css";
 import mainImg from "../../common/images/loginImg.png";
@@ -7,7 +7,7 @@ import googleImg from "../../common/images/google.png";
 import gitImg from "../../common/images/github.png";
 
 const LoginModal = ({ authService }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const onLogIn = useCallback(
     (userId, userName, userEmail) => {
       history.push({

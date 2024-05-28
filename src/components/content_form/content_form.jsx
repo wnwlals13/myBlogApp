@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styles from "./content_form.module.css";
 import Hashtag from "../hashtag/hashtag";
 import Editor from "../editor/editor";
@@ -13,7 +13,7 @@ const ContentForm = memo(
       fileName: null,
       fileURL: null,
     });
-    const history = useHistory();
+    const history = useNavigate();
     const historyId = history?.location?.state?.email;
     const userid = historyId ? historyId.split("@") : null;
     // console.log(history.location.state.id);

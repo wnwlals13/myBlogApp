@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
 import styles from "./article.module.css";
 import Comments from "../comments/comments";
@@ -8,7 +8,7 @@ import Parser from "html-react-parser";
 const Article = memo(({ authService, dbService }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentUser, setCurrentUser] = useState("");
-  const history = useHistory();
+  const history = useNavigate();
   const historyId = history?.location?.state?.article;
 
   const id = historyId?.id || "";
