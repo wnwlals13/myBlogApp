@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
 import ContentForm from "../content_form/content_form";
 import ContentPreview from "../content_preview/content_preview";
@@ -7,9 +7,8 @@ import styles from "./content_add.module.css";
 
 const ContentAdd = memo(({ authService, dbService, FileInput }) => {
   const [contents, setContents] = useState([]);
-  // const [require, setRequire] = useState(false);
 
-  const history = useHistory();
+  const history = useNavigate();
   const historyId = history?.location?.state;
   const historyArticle = history?.location?.state?.article;
   const goToMain = () => {

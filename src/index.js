@@ -1,5 +1,6 @@
 import React, { memo } from "react";
-import ReactDOM from "react-dom";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import "./index.css";
 import App from "./app";
 import reportWebVitals from "./reportWebVitals";
@@ -14,15 +15,15 @@ const FileInput = memo((props) => (
   <ImgFileInput {...props} imgService={imgService} />
 ));
 
-ReactDOM.render(
-  <React.StrictMode>
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <BrowserRouter>
     <App
       authService={authService}
       dbService={dbService}
       FileInput={FileInput}
     />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function

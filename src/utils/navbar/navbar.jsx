@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MyModal from "../../components/myModal/myModal";
 import Sidebar from "../sidebar/sidebar";
 import styles from "./navbar.module.css";
@@ -12,7 +12,7 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
   const [display, setDisplay] = useState(false); //✨modal띄우기 display state를 설정해서 해결!
   const [status, setStatus] = useState(false);
   const [menu, setMenu] = useState([]);
-  const history = useHistory();
+  const history = useNavigate();
   const sidebarRef = useRef();
 
   const onBtnClick = () => {

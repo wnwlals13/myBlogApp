@@ -1,4 +1,5 @@
 import { firebaseDB } from "./firebase";
+import {ref, set} from "firebase/database";
 
 class Database {
   saveContent(userId, content) {
@@ -15,7 +16,7 @@ class Database {
     firebaseDB.ref(`/contents/${userId}/${contentId}`).remove();
   }
   readAllContent() {
-    return firebaseDB.ref("contents").once("value");
+    const result = ref("contents").once("value");
   }
   readMyContent(userId) {
     return firebaseDB.ref(`content/${userId}`).once("value");
