@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import Navbar from "../../utils/navbar/navbar";
 import styles from "./article.module.css";
 import Comments from "../comments/comments";
@@ -8,35 +8,35 @@ import Parser from "html-react-parser";
 const Article = memo(({ authService, dbService }) => {
   const [currentEmail, setCurrentEmail] = useState("");
   const [currentUser, setCurrentUser] = useState("");
-  const history = useHistory();
-  const historyId = history?.location?.state?.article;
+  const navigate = useNavigate();
+  const {state} = useLocation();
+  const historyId = navigate?.location?.Article;
+  const article = state?.article;
 
-  const id = historyId?.id || "";
-  const userName = historyId?.userName || "";
-  const title = historyId?.title || "";
-  const mainContents = historyId?.mainContents || "";
-  const fileURL = historyId?.fileURL || "";
+  const id = article?.id || "";
+  const userName = article?.userName || "";
+  const title = article?.title;
+  const mainContents = article?.mainContents;
+  const fileURL = article?.fileURL || "";
   const uploadDate = historyId?.uploadDate || "";
   const hashtag = historyId?.hashtag || [];
 
   const goToHome = () => {
-    history.push({
-      pathname: "/",
+    navigate( "/", {
       state: {
-        id: history?.location?.state.id,
-        name: history?.location?.state.name,
-        email: history?.location?.state.email,
+        id: navigate?.location?.state.id,
+        name: navigate?.location?.state.name,
+        email: navigate?.location?.state.email,
         article: null,
       },
     });
   };
   const onUpdateHandle = () => {
-    history.push({
-      pathname: "/editPost",
+    navigate( "/editPost", {
       state: {
-        id: history?.location?.state.id,
-        name: history?.location?.state.name,
-        email: history?.location?.state.email,
+        id: navigate?.location?.state.id,
+        name: navigate?.location?.state.name,
+        email: navigate?.location?.state.email,
         article: historyId,
       },
     });
@@ -58,15 +58,21 @@ const Article = memo(({ authService, dbService }) => {
   useEffect(() => {
     return () => setCurrentEmail("");
   }, []);
+
+  useEffect(()=> {
+    const imgdiv = document.getElementById('img-container');
+    imgdiv.style = `background-image: url("${fileURL}")`;
+  },[])
+
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} dbService={dbService} />
-
       <div className={styles.articleContainer}>
         <button className={styles.backBtn} onClick={goToHome}>
           홈으로
         </button>
-
+        <div className={styles.imgWrapper}>
+          <div id="img-container" className={styles.imgDiv}></div>
+        </div>
         <div className={styles.title}>{title}</div>
         <div className={styles.info}>
           <div className={styles.info__Text}>
@@ -84,7 +90,7 @@ const Article = memo(({ authService, dbService }) => {
             </div>
           )}
         </div>
-        {fileURL && <img className={styles.file} src={fileURL} alt="img" />}
+        {/* {fileURL && <img className={styles.file} src={fileURL} alt="img" />} */}
         <div className={styles.content}>{Parser(mainContents)}</div>
         <ul className={styles.hashtagWrapper}>
           <p>#HashTag</p>
@@ -95,9 +101,9 @@ const Article = memo(({ authService, dbService }) => {
               </li>
             ))}
         </ul>
-        <div className={styles.commentWrapper}>
+        {/* <div className={styles.commentWrapper}>
           <Comments postsId={id} />
-        </div>
+        </div> */}
       </div>
     </section>
   );

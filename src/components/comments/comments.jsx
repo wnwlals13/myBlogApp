@@ -1,8 +1,8 @@
 import React, { createRef, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Comments = ({ postsId }) => {
-  const history = useHistory();
+  const history = useNavigate();
   const commentRef = createRef();
   useEffect(() => {
     const utterances = document.createElement("script");

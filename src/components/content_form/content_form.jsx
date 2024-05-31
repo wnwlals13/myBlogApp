@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./content_form.module.css";
 import Hashtag from "../hashtag/hashtag";
 import Editor from "../editor/editor";
@@ -13,10 +13,10 @@ const ContentForm = memo(
       fileName: null,
       fileURL: null,
     });
-    const history = useHistory();
-    const historyId = history?.location?.state?.email;
-    const userid = historyId ? historyId.split("@") : null;
-    // console.log(history.location.state.id);
+    const history = useNavigate();
+    
+    const userInfo = JSON.parse(localStorage.getItem('user'));
+
     const onUpload = (event) => {
       event.preventDefault();
       if (titleRef.current.value === "") {
@@ -26,18 +26,18 @@ const ContentForm = memo(
         alert("내용을 입력해주세요");
       }
       const content = {
-        id: Date.now(),
-        uploadDate: getFormatDate(new Date()) || "",
+        id: Date.now().toString(),
+        createDate: getFormatDate(new Date()) || "",
         updateDate: getFormatDate(new Date()) || "",
-        userName: userid[0] || "",
-        userId: history?.location?.state?.id || "",
+        userName: userInfo?.name,
+        userId: userInfo?.email,
         title: titleRef.current.value,
         mainContents: mainText || "",
         fileName: updateFile.fileName || "",
         fileURL: updateFile.fileURL || "",
-        hashtag: hashtag,
+        // hashtag: hashtag,
       };
-      console.log(titleRef.current.value, content);
+      
       addContent({ ...content });
     };
     //✨hashtag 하고싶다
@@ -95,10 +95,6 @@ const ContentForm = memo(
         <div className={styles.mainContents}>
           <Editor mainContents={mainText} onChangeField={onChangeField} />
         </div>
-
-        {/* <div className={`${styles.hashTag__container} ${styles.data}`}>
-          <Hashtag setHashtag={hashTagHandle} />
-        </div> */}
         <button className={styles.uploadBtn} onClick={onUpload}>
           업로드
         </button>

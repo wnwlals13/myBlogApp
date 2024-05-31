@@ -1,36 +1,33 @@
 import React, { useCallback, useEffect } from "react";
-import { useHistory } from "react-router-dom";
-import Navbar from "../../utils/navbar/navbar.jsx";
+import { useNavigate } from "react-router-dom";
 import styles from "./loginModal.module.css";
 import mainImg from "../../common/images/loginImg.png";
 import googleImg from "../../common/images/google.png";
 import gitImg from "../../common/images/github.png";
 
+/**
+ * 로그인
+ */
 const LoginModal = ({ authService }) => {
-  const history = useHistory();
-  const onLogIn = useCallback(
-    (userId, userName, userEmail) => {
-      history.push({
-        pathname: "/",
-        state: { id: userId, name: userName, email: userEmail },
-      });
+  const navigate = useNavigate();
+  const onLogIn = useCallback((userId, userName, userEmail) => {
+      navigate('/', {state : {id: userId, name: userName, email: userEmail}})
     },
-    [history]
+    [navigate]
   );
   const onClick = (event) => {
-    authService
-      .login(event.currentTarget.id)
-      .then((data) => onLogIn(data.user.uid));
+    authService.login(event.currentTarget.id);
+      // onLogIn(data.user.uid)
   };
   useEffect(() => {
     authService.onAuthChange((user) => {
+      console.log(user);
       user && onLogIn(user.uid, user.displayName, user.email);
     });
   }, [authService, onLogIn]);
   return (
     <section className={styles.container}>
       <section className={styles.navContainer}>
-        <Navbar authService={authService} />
       </section>
       <section className={styles.loginContainer}>
         <div className={styles.loginHeader}>

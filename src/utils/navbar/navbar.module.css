@@ -4,7 +4,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Chango&display=swap");
 
 .header {
-  position: fixed;
+  position: sticky;
   height: 60px;
   width: 100vw;
   top: 0;
@@ -54,21 +54,9 @@
   width: 200px;
   height: 100vh;
   transition: all 0.3s;
-  /*
-  
-  /* left: -200px;
-  
-  */
-  /* opacity: 0;
-  display: none; */
-  /* padding-top: 15px;
-   */
 }
 
 .sideSection.show {
-  /* left: 0; */
-  /* */
-  /* display: block; */
   opacity: 1;
 }
 .sideSection.show .sidebarInner {

@@ -1,18 +1,23 @@
 import React, { memo } from "react";
 import styles from "./content.module.css";
 
-const Content = memo(({ content, getArticle }) => {
-  const { userName, title, fileURL } = content;
+const Content = memo (({ content, getArticle }) => {
+  
+  const { fileURL, title, user_id, userName } = content;
+  
   const onClickHandle = () => {
     getArticle(content);
   };
+
+  const handleNoImg = (e) => {
+    e.currentTarget.style = 'display:none;'
+  }
+
   return (
     <article className={styles.contentContainer} onClick={onClickHandle}>
-      {fileURL && (
         <div className={styles.imgInfo}>
-          <img src={fileURL} className={styles.imgFile} alt="imgFile"></img>
+          <img src={fileURL} className={styles.imgFile} onError={handleNoImg}></img>
         </div>
-      )}
       <div className={styles.metadata}>
         <p className={styles.title}>{title}</p>
       </div>

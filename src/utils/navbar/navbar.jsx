@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useRef, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import MyModal from "../../components/myModal/myModal";
 import Sidebar from "../sidebar/sidebar";
 import styles from "./navbar.module.css";
@@ -12,7 +12,7 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
   const [display, setDisplay] = useState(false); //✨modal띄우기 display state를 설정해서 해결!
   const [status, setStatus] = useState(false);
   const [menu, setMenu] = useState([]);
-  const history = useHistory();
+  const navigate = useNavigate();
   const sidebarRef = useRef();
 
   const onBtnClick = () => {
@@ -32,14 +32,12 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
   };
 
   const goToHome = () => {
-    history.push({
-      pathname: "/",
+    navigate("/", {
       state: {
         id: userId || null,
         name: name || null,
         email: email || null,
-      },
-    });
+      }});
   };
   const slideSidebar = () => {
     sidebarRef.current.className = `${styles.sideSection} ${styles.show}`;
@@ -50,26 +48,12 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
   };
 
   useEffect(() => {
-    authService.onAuthChange((user) => {
+    authService.onAuthChange((user)=>{
+      console.log(user.uid, user.email, user.displayName);
       user && setName(user.displayName);
       user && setEmail(user.email);
       user && setUserId(user.uid);
-    });
-    // dbService.readAllContent().then(function (snapshot) {
-    //   if (snapshot.exists()) {
-    //     snapshot.forEach((child) => {
-    //       const results = child.val();
-    //       Object.keys(results).forEach((item) => {
-    //         results[item].hashtag.map((each) => {
-    //           setMenu((menu) => {
-    //             const update = [...menu, each];
-    //             return update;
-    //           });
-    //         });
-    //       });
-    //     });
-    //   }
-    // });
+    })
   }, [authService]);
   return (
     <>
@@ -85,8 +69,8 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
             </div>
           </div>
           <p className={styles.sidebar} onClick={slideSidebar}>
-            Jemlog
-          </p>{" "}
+            차근차근 기록하기
+          </p>
         </div>
         <div className={styles.search}>
           {name && (
@@ -95,7 +79,7 @@ const Navbar = memo(({ authService, dbService, onLogin }) => {
             </div>
           )}
           {!name && (
-            <div className={styles.user} onClick={() => history.push("/login")}>
+            <div className={styles.user} onClick={() => navigate("/login")}>
               로그인
             </div>
           )}
