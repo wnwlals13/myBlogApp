@@ -8,6 +8,7 @@ import AuthService from "./service/auth_service.js";
 import Database from "./service/database";
 import ImgFileInput from "./components/file_input/file_input";
 import ImgService from "./service/img_service";
+
 const authService = new AuthService();
 const dbService = new Database();
 const imgService = new ImgService();

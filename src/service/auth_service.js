@@ -1,16 +1,38 @@
-import { firebaseAuth, githubProvider, googleProvider } from "./firebase.js";
+import { auth } from "./firebase.js";
+import { signInWithPopup, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+
+export const googleProvider = new GoogleAuthProvider();
+export const githubProvider = new GithubAuthProvider();
+
 class AuthService {
   login(providerName) {
     const authProvider = this.getProvider(providerName);
-    return firebaseAuth.signInWithPopup(authProvider);
+    signInWithPopup(auth, authProvider).then(result=> {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      const token = credential.accessToken;
+      const user = result.user;
+      console.log(user);
+      const userInfo = {
+        name : user.displayName,
+        email : user.email,
+        uid : user.uid,
+        profileImg : user.photoURL,
+      };
+      
+      localStorage.setItem('user', JSON.stringify(userInfo));
+    });
   }
   onAuthChange(onUserChanged) {
-    firebaseAuth.onAuthStateChanged((user) => {
-      onUserChanged(user);
+    onAuthStateChanged(auth, (user) => {
+      if(user) {
+        const uid = user.uid;
+        onUserChanged(user);
+      }
     });
   }
   logout() {
-    return firebaseAuth.signOut();
+    localStorage.removeItem('user');
+    return auth.signOut();
   }
   getProvider(providerName) {
     switch (providerName) {

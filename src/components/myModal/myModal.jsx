@@ -1,35 +1,25 @@
 import React, { memo } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "./myModal.module.css";
 
 const MyModal = memo(({ display, onLogout }) => {
-  const history = useNavigate();
-  const historyId = history?.location?.state;
-  // console.log(historyId);
+  const navigate = useNavigate();
+  const {state} = useLocation();
   const onthirdClick = () => {
-    history.push("/");
+    navigate("/");
     display = false;
     onLogout();
   };
   const handleMenu = (event) => {
     const dataId = event.target.dataset.id;
+    console.log(state);
     if (dataId === "newly") {
-      history.push({
-        pathname: "/addPost",
-        state: {
-          id: historyId ? historyId.id : null,
-          name: historyId ? historyId.name : null,
-          email: historyId ? historyId.email : null,
-        },
+      navigate("/addPost", {
+        state: state,
       });
     } else if (dataId === "mypost") {
-      history.push({
-        pathname: "/",
-        state: {
-          id: historyId ? historyId.id : null,
-          name: historyId ? historyId.name : null,
-          email: historyId ? historyId.email : null,
-        },
+      navigate( "/", {
+        state: state
       });
     }
   };
@@ -41,9 +31,6 @@ const MyModal = memo(({ display, onLogout }) => {
       <li className={styles.listItem} data-id="newly" onClick={handleMenu}>
         새 글 쓰기
       </li>
-      {/* <li className={styles.listItem} data-id="mypost" onClick={handleMenu}>
-        내가 쓴 글
-      </li> */}
       <li className={styles.listItem} data-id="logout" onClick={onthirdClick}>
         로그아웃
       </li>

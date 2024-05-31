@@ -12,13 +12,11 @@ const ContentAdd = memo(({ authService, dbService, FileInput }) => {
   const historyId = history?.location?.state;
   const historyArticle = history?.location?.state?.article;
   const goToMain = () => {
-    history.push({
-      pathname: "/",
+    history("/", {
       state: {
         id: historyId ? historyId.id : null,
         name: historyId ? historyId.name : null,
         email: historyId ? historyId.email : null,
-        // contentId: contents.id ? contents.id : null,
       },
     });
   };
@@ -28,7 +26,8 @@ const ContentAdd = memo(({ authService, dbService, FileInput }) => {
       update[content.id] = content;
       return update;
     });
-    dbService.saveContent(historyId.id, content);
+    console.log(content);
+    dbService.addContent(content);
     goToMain();
   };
   const updateContent = (content) => {
@@ -41,8 +40,6 @@ const ContentAdd = memo(({ authService, dbService, FileInput }) => {
 
   return (
     <section className={styles.container}>
-      <Navbar authService={authService} dbService={dbService} />
-
       <div className={styles.addContainer}>
         <div className={styles.inputWrap}>
           {!historyArticle && (
@@ -53,15 +50,7 @@ const ContentAdd = memo(({ authService, dbService, FileInput }) => {
               FileInput={FileInput}
             />
           )}
-          {/* {historyArticle && (
-            <ContentEdit
-              contents={contents}
-              FileInput={FileInput}
-              reviseContent={reviseContent}
-            />
-          )} */}
         </div>
-
         <div className={styles.prevWrap}>
           {contents && <ContentPreview contents={contents} />}
         </div>
