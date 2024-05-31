@@ -5,7 +5,6 @@ import styles from "./myModal.module.css";
 const MyModal = memo(({ display, onLogout }) => {
   const navigate = useNavigate();
   const {state} = useLocation();
-
   const onthirdClick = () => {
     navigate("/");
     display = false;

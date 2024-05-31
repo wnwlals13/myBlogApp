@@ -14,7 +14,6 @@ const ContentForm = memo(
       fileURL: null,
     });
     const history = useNavigate();
-    
     const userInfo = JSON.parse(localStorage.getItem('user'));
 
     const onUpload = (event) => {
